@@ -52,42 +52,48 @@ alt_disk_copy -d hdisk1
 ```
 exportvg altinst_rootvg
 ```
-### C
-```
-lspv
-```
-### C
+
+### Con el siguiente comando creamos un Volume Group para almacenar la imagen que se quiere exportar 
 ```
 smit vg
 ```
-### C
+### Con los siguientes comandos podemos ver la capacidad total de almacenamiento de cada disco
+
+**Disco 0:**
 ```
 bootinfo -s hdisk0
 ```
-### C
+
+**Disco 1:**
 ```
 bootinfo -s hdisk1
 ```
-### C
+### Mediante la utilización del siguiente comando, asignamos un file system al disco de destino:
 ```
 smit fs
 ```
-### C
+### Ahora debemos montar ese file System que creamos en el paso anterior en la ruta del disco de destino:
 ```
 mount /skytapfs
 ```
-### C
+### verificamos que el disco este montado en la ruta indicada:
 ```
 lsfs
 ```
-### C
+### En este paso, debemos asegurarnos que la imagen creada tenga el mismo tamaño en espacio de almacenamiento a la maquina que se desea exportar.
 ```
 df -m
 ```
-### C
+### Mediante la utilización del siguiente comando exportamos la imagen del disco,en este proceso se crean dos archivos: un .ovf y un .img. 
 ```
 ./export_lpar.ksh hdisk0
 ```
+### Teniendo los archivos .ovf y .img debemos crear uno nuevo que resulta de comprimir estos dos:
+```
+tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
+``` 
+**NOTA: Los archivos .ovf y .img son los que se han gererado anteriormente, mientras que el archivo .ova es el que deseamos.**
+
  
  ## 3. Crear un trabajo de importación en Skytap
  
