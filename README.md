@@ -28,48 +28,30 @@ Finalmente presione el botón **Launch Skytap On IBM Cloud** que lo redirigirá 
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen.png">
 </p>
 
-## 2. Preparación de máquinas virtuales para importar
-¿Sus máquinas virtuales estan basadas en VMware? Si la respuesta es si, siga las instrucciones del numeral A, de lo contrario siga las instrucciones del numeral B.
+## 2. Preparar imagen de la máquina Power AIX 
 
-### A. Máquinas virtuales basadas en VMware
-Skytap admite archivos OVA (recomendado), paquetes OVF y archivos VMX. Lea detenidamente los pasos de importación según la herramienta que utilice. **Apague las máquinas virtuales antes de iniciar el proceso.**
+Para poder exportar la imagen de una máquina AIX se deben seguir los siguientes pasos:
 
-VMware workstation:
-* Seleccione **Archivo** > **Exportar a OVF**.
-* Al seleccionar el nombre del archivo cambie la extensión a .ova y seleccione **Guardar**.
 
-vSphere:
-* Seleccione **Acciones** dentro del vSphere Web Client y elija una máquina virtual o vApp.
-* Seleccione Exportar plantilla OVF, elija un nombre y ubicación de archivo.
-* En el campo **Formato** seleccione preferiblemente el formato OVA.
-* Si habilita el campo opciones avanzadas podrá incluir información adicional o configuraciones en la plantilla exportada. 
-Si desea más información sobre importación de máquinas virtuales desde vSphere visite la documentación de [VMware vSphere](https://docs.vmware.com/en/VMware-vSphere/5.5/com.vmware.vsphere.vm_admin.doc/GUID-B05A4E9F-DD21-4397-95A1-00125AFDA9C8.html).
 
-Fusion Pro:
-* Elija la máquina virtual, seleccione **Archivo > Exportar a OVF** y elija un nombre y ubicación de archivo.
-* Seleccione el formato del archivo, preferiblemente el formato OVA y haga clic en **Exportar**.
+### Descargue y extraiga los archivos del repositorio con los Scripts necesarios para la exportacion:
 
-Si no puede crear archivos de tipo OVA es recomendado comprimir los archivos OVF / VMDK o VMX / VMDK en un archivo 7z, utilizando la herramienta [7-zip](https://www.7-zip.org/).
+https://github.com/skytap/aix-export
 
-### B. Máquinas virtuales no basadas en VMware
+### C
 
-Algunas imágenes OVA y OVF no están basadas en VMware y no pueden importarse directamente a Skytap. Por ejemplo, las máquinas virtuales VirtualBox no están basadas en VMware, ya que no se exportaron desde un hipervisor VMware (VMware Server, VMware Workstation, VMware ESX, etc.).
-
-Para importar archivo .OVA y .OVF que no sean de VMware a Skytap, debemos convertir esta imagen, para hacerlo usando VMware vCenter Converter lea los sigueintes pasos:
-
-* Si la VM es un archivo OVF, primero conviértalo al formato VMX. Para obtener instrucciones, consulte [Conversión de archivos OVF a VMX para usar con VMware Converter](https://help.skytap.com/Using_OVF_Converter_Tool.html).
-
-* Descargue e instale VMware vCenter Converter en su máquina local, para la descarga lo puede hacer desde [VMware products](https://www.vmware.com/products/converter.html)
-
-* Abra VMware vCenter Converter y haga clic en **Convertir máquina**.
-* En **Tipo de origen**, seleccione **VMware Workstation u otra máquina virtual VMware**. Elija la ubicación del archivo VMX u OVA. Haga clic en **Siguiente**.
-* En **Seleccionar tipo de destino**, seleccione **VMware Workstation u otra máquina virtual VMware**.
-* En **Seleccionar producto VMware**, seleccione **VMware Workstation 11.0**.
-* Ingrese un nombre para su VM en el campo **Nombre** y seleccione una ubicación de destino para el archivo convertido. Haga clic en **Siguiente**.
-* Para aceptar las opciones predeterminadas, haga clic en **Siguiente**.
-* En la página de resumen, verifique la configuración.
-* Haga clic en **Finalizar** para comenzar el proceso de conversión. Dependiendo del tamaño de la VM, el proceso de conversión puede tardar más de una hora en completarse.
-* **Importe la máquina virtual** convertida en Skytap, Este proceso lo puede realizar siguiendo esta guia siguiendola como si la imagen ya fuera VMware, o si desea información adicionar la puede consultar [aqui](https://help.skytap.com/importing-vms-overview.html).
+lspv
+alt_disk_copy -d hdisk1
+exportvg altinst_rootvg
+lspv
+smit vg
+bootinfo -s hdisk0
+bootinfo -s hdisk1
+smit fs
+mount /skytapfs
+lsfs
+df -m
+./export_lpar.ksh hdisk0
 
  
  ## 3. Crear un trabajo de importación en Skytap
