@@ -85,7 +85,7 @@ df -m
 <img width="929" alt="Skytap5" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen3.png">
 </p>
 
- 
+ .
  ## 4. Cargar los archivos vía FTP
  
  Para este paso necesitará un cliente FTP, le recomendamos el uso de [WinSCP](https://winscp.net/eng/index.php) para Microsoft.
