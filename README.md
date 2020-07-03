@@ -5,14 +5,12 @@ En esta guía encontrará el paso a paso detallado para la importación de sus m
 
 ### Indice:
 1. [Acceso a Skytap On IBM Cloud](#1-acceso-a-skytap-on-ibm-cloud)
-2. [Preparación de máquinas virtuales para importar](#2-preparación-de-máquinas-virtuales-para-importar)
-- [Máquinas virtuales basadas en VMware](#a-máquinas-virtuales-basadas-en-VMware)
-- [Máquinas virtuales no basadas en VMware](#b-máquinas-virtuales-no-basadas-en-VMware)
-3. [Crear un trabajo de importación en Skytap](#3-crear-un-trabajo-de-importación-en-Skytap)
-4. [Cargar los archivos vía FTP](#4-cargar-los-archivos-vía-FTP)
+2. [ Preparar imagen de la máquina Power AIX](#2-preparar-imagen-de-la-máquina-power-aix)
+3. [Crear un trabajo de importación en Skytap](#3-crear-un-trabajo-de-importación-en-skytap)
+4. [Cargar los archivos vía FTP](#4-cargar-los-archivos-vía-ftp)
 5. [Inicio del proceso de análisis e importación](#5-inicio-del-proceso-de-análisis-e-importación)
-6. [Notas](#Notas-)
-7. [Referencias](#Referencias-)
+6. [Notas](#notas-)
+7. [Referencias](#referencias-)
 
 ## 1. Acceso a Skytap On IBM Cloud
 Para acceder a sus recursos en Skytap, primero ingrese a su cuenta de [IBM cloud](https://cloud.ibm.com/login), en caso de no tener una cuenta [cree una de forma gratuita](https://cloud.ibm.com/registration) y proporcione a IBM el correo de su cuenta para que le conceda acceso a su servicio de Skytap.
@@ -55,7 +53,7 @@ alt_disk_copy -d hdisk1
 </p>
 
 
-### C
+### Preparamos el disco para exportar
 ```
 exportvg altinst_rootvg
 ```
@@ -63,16 +61,25 @@ exportvg altinst_rootvg
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/2%20.png">
 </p>
 
-### Con el siguiente comando creamos un Volume Group para almacenar la imagen que se quiere exportar 
+### A continuación encontrará los pasos para crear un Volume Group para almacenar la imagen que se quiere exportar.
+### 1. Corra el siquiente comando, el cual abrira el menú mostrado. Selecicone la opción resaltada.
+
 ```
 smit vg
-```
+``` 
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/3.png">
 </p>
+
+### 2.  Selecicone nuevamente la opción resaltada.
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/4.png">
 </p>
+
+### 3.  Añada las caracteríticas del disco.
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/5%20.png">
 </p>
@@ -94,19 +101,25 @@ bootinfo -s hdisk1
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/6%20.png">
 </p>
 
-### Mediante la utilización del siguiente comando, asignamos un file system al disco de destino:
+### A continuación encontrará los pasos para crear un file system, que será asignado al disco de destino.
 
 ```
 smit fs
 ```
 
+### 1. Corra el siquiente comando, el cual abrirá el menú mostrado. Selecicone la opción resaltada.
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/7.png">
 </p>
 
+### 2.  Añada las caracteríticas del sistema de archivos. Tenga en cuenta que el tamaño del file system debe ser mayor al tamaño total de los discos a exportar.
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/8%20.png">
 </p>
+
+### Si el proceso se completó satisfactoriamente encontrará el siguiente mensaje.
 
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/9.png">
@@ -130,6 +143,7 @@ lsfs
 </p>
 
 ### En este paso, debemos asegurarnos que la imagen creada tenga el mismo tamaño en espacio de almacenamiento a la maquina que se desea exportar.
+
 ```
 df -m
 ```
@@ -139,6 +153,7 @@ df -m
 </p>
 
 ### Mediante la utilización del siguiente comando exportamos la imagen del disco,en este proceso se crean dos archivos: un .ovf y un .img. 
+
 ```
 ./export_lpar.ksh hdisk0
 ```
@@ -148,6 +163,7 @@ df -m
 </p>
 
 ### Teniendo los archivos .ovf y .img debemos crear uno nuevo que resulta de comprimir estos dos:
+
 ```
 tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
 ``` 
