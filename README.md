@@ -80,14 +80,23 @@ bootinfo -s hdisk0
 ```
 bootinfo -s hdisk1
 ```
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/4%20.png">
+</p>
 ### Mediante la utilización del siguiente comando, asignamos un file system al disco de destino:
 ```
 smit fs
 ```
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/5%20.png">
+</p>
 ### Ahora debemos montar ese file System que creamos en el paso anterior en la ruta del disco de destino:
 ```
 mount /skytapfs
 ```
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/6%20.png">
+</p>
 ### verificamos que el disco este montado en la ruta indicada:
 ```
 lsfs
