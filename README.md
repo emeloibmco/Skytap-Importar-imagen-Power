@@ -210,12 +210,12 @@ tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
 Una vez el proceso de carga del archivo en WinSCP termine haga clic en el botón **Create environment**, Skytap iniciará un proceso de análisis de la carpeta **UPLOAD** para luego importar las máquinas virtuales y crear un entorno virtual con su configuración de red.
 
 <p align="center">
-<img width="932" alt="Skytap6" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen6.png">
+<img width="932" alt="Skytap6" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/16.PNG">
 </p>
 
 Podrá encontrar su máquina en el panel principal.
 <p align="center">
-<img width="944" src="https://github.com/mariolarte19/Skytap-Importacion-de-maquinas-virtuales-/blob/master/Skytap9.PNG">
+<img width="944" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/17.PNG">
 </p>
 
 ## Notas 📑
