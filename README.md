@@ -44,19 +44,31 @@ https://github.com/skytap/aix-export
 ```
 lspv
 ```
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/1%20.png">
+</p>
+
 ### Usamos el siguiente comando con hdisk1 como disco de destino
 ```
 alt_disk_copy -d hdisk1
 ```
+
+
 ### C
 ```
 exportvg altinst_rootvg
 ```
-
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/2%20.png">
+</p>
 ### Con el siguiente comando creamos un Volume Group para almacenar la imagen que se quiere exportar 
 ```
 smit vg
 ```
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/3%20.png">
+</p>
+
 ### Con los siguientes comandos podemos ver la capacidad total de almacenamiento de cada disco
 
 **Disco 0:**
