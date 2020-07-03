@@ -40,11 +40,11 @@ Para poder exportar la imagen de una máquina AIX se deben seguir los siguientes
 https://github.com/skytap/aix-export
 ```
 
-### C
+### Estos son los discos disponibles, se va a exportar hdisk0
 ```
 lspv
 ```
-### C
+### Usamos el siguiente comando con hdisk1 como disco de destino
 ```
 alt_disk_copy -d hdisk1
 ```
