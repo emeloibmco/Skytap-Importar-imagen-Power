@@ -52,6 +52,9 @@ lspv
 ```
 alt_disk_copy -d hdisk1
 ```
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/11%20.png">
+</p>
 
 
 ### C
@@ -68,6 +71,12 @@ smit vg
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/3%20.png">
 </p>
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/4%20.png">
+</p>
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/5%20.png">
+</p>
 
 ### Con los siguientes comandos podemos ver la capacidad total de almacenamiento de cada disco
 
@@ -81,22 +90,31 @@ bootinfo -s hdisk0
 bootinfo -s hdisk1
 ```
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/4%20.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/6%20.png">
 </p>
+
 ### Mediante la utilización del siguiente comando, asignamos un file system al disco de destino:
 ```
 smit fs
 ```
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/5%20.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/7%20.png">
 </p>
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/8%20.png">
+</p>
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/9%20.png">
+</p>
+
 ### Ahora debemos montar ese file System que creamos en el paso anterior en la ruta del disco de destino:
 ```
 mount /skytapfs
 ```
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/6%20.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/10%20.png">
 </p>
+
 ### verificamos que el disco este montado en la ruta indicada:
 ```
 lsfs
