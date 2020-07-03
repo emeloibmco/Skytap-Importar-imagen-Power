@@ -36,34 +36,58 @@ Para poder exportar la imagen de una máquina AIX se deben seguir los siguientes
 
 ### Descargue y extraiga los archivos del repositorio con los Scripts necesarios para la exportacion:
 
+```
 https://github.com/skytap/aix-export
+```
 
 ### C
-
+```
 lspv
+```
 ### C
+```
 alt_disk_copy -d hdisk1
+```
 ### C
+```
 exportvg altinst_rootvg
+```
 ### C
+```
 lspv
+```
 ### C
+```
 smit vg
+```
 ### C
+```
 bootinfo -s hdisk0
+```
 ### C
+```
 bootinfo -s hdisk1
+```
 ### C
+```
 smit fs
+```
 ### C
+```
 mount /skytapfs
+```
 ### C
+```
 lsfs
+```
 ### C
+```
 df -m
+```
 ### C
+```
 ./export_lpar.ksh hdisk0
-
+```
  
  ## 3. Crear un trabajo de importación en Skytap
  
