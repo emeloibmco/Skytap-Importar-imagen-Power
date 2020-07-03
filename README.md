@@ -110,7 +110,7 @@ smit fs
 ### 1. Corra el siquiente comando, el cual abrirá el menú mostrado. Selecicone la opción resaltada.
 
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/7.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/7%20.png">
 </p>
 
 ### 2.  Añada las caracteríticas del sistema de archivos. Tenga en cuenta que el tamaño del file system debe ser mayor al tamaño total de los discos a exportar.
