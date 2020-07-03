@@ -64,15 +64,16 @@ exportvg altinst_rootvg
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/2%20.png">
 </p>
+
 ### Con el siguiente comando creamos un Volume Group para almacenar la imagen que se quiere exportar 
 ```
 smit vg
 ```
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/3%20.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/3.png">
 </p>
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/4%20.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/4.png">
 </p>
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/5%20.png">
@@ -81,11 +82,13 @@ smit vg
 ### Con los siguientes comandos podemos ver la capacidad total de almacenamiento de cada disco
 
 **Disco 0:**
+
 ```
 bootinfo -s hdisk0
 ```
 
 **Disco 1:**
+
 ```
 bootinfo -s hdisk1
 ```
@@ -94,17 +97,21 @@ bootinfo -s hdisk1
 </p>
 
 ### Mediante la utilización del siguiente comando, asignamos un file system al disco de destino:
+
 ```
 smit fs
 ```
+
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/7%20.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/7.png">
 </p>
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/8%20.png">
 </p>
+
 <p align="center">
-<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/9%20.png">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/9.png">
 </p>
 
 ### Ahora debemos montar ese file System que creamos en el paso anterior en la ruta del disco de destino:
