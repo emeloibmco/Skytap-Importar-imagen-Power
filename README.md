@@ -32,8 +32,6 @@ Finalmente presione el botón **Launch Skytap On IBM Cloud** que lo redirigirá 
 
 Para poder exportar la imagen de una máquina AIX se deben seguir los siguientes pasos:
 
-
-
 ### Descargue y extraiga los archivos del repositorio con los Scripts necesarios para la exportacion:
 
 ```
@@ -126,20 +124,39 @@ mount /skytapfs
 ```
 lsfs
 ```
+
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/12.PNG">
+</p>
+
 ### En este paso, debemos asegurarnos que la imagen creada tenga el mismo tamaño en espacio de almacenamiento a la maquina que se desea exportar.
 ```
 df -m
 ```
+
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/13.PNG">
+</p>
+
 ### Mediante la utilización del siguiente comando exportamos la imagen del disco,en este proceso se crean dos archivos: un .ovf y un .img. 
 ```
 ./export_lpar.ksh hdisk0
 ```
+
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/14.PNG">
+</p>
+
 ### Teniendo los archivos .ovf y .img debemos crear uno nuevo que resulta de comprimir estos dos:
 ```
 tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
 ``` 
-**NOTA: Los archivos .ovf y .img son los que se han gererado anteriormente, mientras que el archivo .ova es el que deseamos.**
 
+<p align="center">
+<img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/15.PNG">
+</p>
+
+**NOTA: Los archivos .ovf y .img son los que se han gererado anteriormente, mientras que el archivo .ova es el que deseamos.**
  
  ## 3. Crear un trabajo de importación en Skytap
  
@@ -147,40 +164,30 @@ tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
  
  * Ingrese en **Environments** ubicado en la barra superior, luego en **VM imports** de clic en el botón **Create VM import job**.
   
-  
  <p align="center">
 <img width="956" alt="Skytap2" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen2.png">
 </p>
  
-
-
  * Ingrese la información sobre su importación y al finalizar de clic en el botón **Save import job**.
 
- 
  <p align="center">
 <img width="929" alt="Skytap5" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen3.png">
 </p>
 
- .
  ## 4. Cargar los archivos vía FTP
  
  Para este paso necesitará un cliente FTP, le recomendamos el uso de [WinSCP](https://winscp.net/eng/index.php) para Microsoft.
  * En la interfaz de Skytap encontrará las credenciales para la conexión FTP.
- 
-
 
 <p align="center">
 <img width="929" alt="skytap1" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen4.png">
 </p>
- 
  
  * Ingrese en su cliente FTP con las credenciales proporcionadas por Skytap, ingrese en la carpeta **UPLOAD** y arrastre el archivo.
 
  <p align="center">
 <img width="805" alt="skytap3" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen5.png">
 </p>
- 
-
  
   ## 5. Inicio del proceso de análisis e importación
   
@@ -195,7 +202,6 @@ Podrá encontrar su máquina en el panel principal.
 <img width="944" src="https://github.com/mariolarte19/Skytap-Importacion-de-maquinas-virtuales-/blob/master/Skytap9.PNG">
 </p>
 
- 
 ## Notas 📑
 * Los archivos OVA requieren menos tiempo para cargarse.
 * Skytap eliminará la información incluida en el elemento ExtraConfig durante el proceso de importación.
