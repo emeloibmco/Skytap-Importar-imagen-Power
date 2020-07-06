@@ -28,15 +28,24 @@ Finalmente presione el botón **Launch Skytap On IBM Cloud** que lo redirigirá 
 
 ## 2. Preparar imagen de la máquina Power AIX 
 
-Para poder exportar la imagen de una máquina AIX se deben seguir los siguientes pasos:
+Para poder exportar la imagen de una máquina AIX sifa los siguientes pasos:
 
-### Descargue y extraiga los archivos del repositorio con los Scripts necesarios para la exportacion:
+* En la máquina a exportar ingrese a la ruta **/etc/security/limits**  y asegúrese de que la configuración sea la siguiente:
+```
+default:
+         fsize = -1
+ root:
+         data = -1
+         fsize = -1
+```     
+
+* Descargue y extraiga los archivos del repositorio con los scripts necesarios para la exportacion:
 
 ```
 https://github.com/skytap/aix-export
 ```
 
-### Estos son los discos disponibles, se va a exportar hdisk0
+* Liste los discos disponibles, para el caso de esta guía se va a exportar hdisk0, que es el disco de arranque identificado como rootvg.
 ```
 lspv
 ```
@@ -44,7 +53,7 @@ lspv
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/1%20.png">
 </p>
 
-### Usamos el siguiente comando con hdisk1 como disco de destino
+* Prepare el rootvg para exportar usando el siguiente comando, hdisk1 para esta guía será el disco de destino.
 ```
 alt_disk_copy -d hdisk1
 ```
@@ -53,7 +62,7 @@ alt_disk_copy -d hdisk1
 </p>
 
 
-### Preparamos el disco para exportar
+* Prepare el disco para exportar
 ```
 exportvg altinst_rootvg
 ```
@@ -61,8 +70,9 @@ exportvg altinst_rootvg
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/2%20.png">
 </p>
 
-### A continuación encontrará los pasos para crear un Volume Group para almacenar la imagen que se quiere exportar.
-### 1. Corra el siquiente comando, el cual abrira el menú mostrado. Selecicone la opción resaltada.
+A continuación encontrará los pasos para crear un Volume Group para almacenar la imagen que se quiere exportar. Al ingresar a los menús desplegados en los siguientes pasos, use las instrucciones que aparecen en la parte inferior del menú para moverse entre las opciones.
+
+1. Corra el siquiente comando, el cual abrirá el menú mostrado. Selecicone la opción resaltada en la imagen.
 
 ```
 smit vg
@@ -72,19 +82,19 @@ smit vg
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/3.png">
 </p>
 
-### 2.  Selecicone nuevamente la opción resaltada.
+ 2.  En este nuevo menú selecicone nuevamente la opción resaltada en la imagen.
 
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/4.png">
 </p>
 
-### 3.  Añada las caracteríticas del disco.
+ 3.  Añada las caracteríticas del disco teniendo en cuenta que el tamaño de la partición debe ser mayor a la suma total del tamaño de los discos que van a ser exportados.
 
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/5%20.png">
 </p>
 
-### Con los siguientes comandos podemos ver la capacidad total de almacenamiento de cada disco
+* Con los siguientes comandos podemos ver la capacidad total de almacenamiento de cada disco.
 
 **Disco 0:**
 
@@ -97,43 +107,47 @@ bootinfo -s hdisk0
 ```
 bootinfo -s hdisk1
 ```
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/6%20.png">
 </p>
 
-### A continuación encontrará los pasos para crear un file system, que será asignado al disco de destino.
+A continuación encontrará los pasos para crear un file system, que será asignado al disco de destino.
 
 ```
 smit fs
 ```
 
-### 1. Corra el siquiente comando, el cual abrirá el menú mostrado. Selecicone la opción resaltada.
+1. Corra el siquiente comando, el cual abrirá el menú mostrado. Selecicone la opción resaltada en la imagen.
 
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/7%20.png">
 </p>
 
-### 2.  Añada las caracteríticas del sistema de archivos. Tenga en cuenta que el tamaño del file system debe ser mayor al tamaño total de los discos a exportar.
+ 2.  Añada las caracteríticas del sistema de archivos. Tenga en cuenta que el tamaño del file system debe ser mayor al tamaño total de los discos a exportar.
 
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/8%20.png">
 </p>
 
-### Si el proceso se completó satisfactoriamente encontrará el siguiente mensaje.
+* Si el proceso se completó satisfactoriamente encontrará el siguiente mensaje.
 
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/9.png">
 </p>
 
-### Ahora debemos montar ese file System que creamos en el paso anterior en la ruta del disco de destino:
+* Ahora monte el file System que creado en el paso anterior en la ruta del disco de destino, tenga en cuenta que skytapfs es el nombre del file system que se especificó anteriormente.
+
 ```
 mount /skytapfs
 ```
+
 <p align="center">
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/10%20.png">
 </p>
 
-### verificamos que el disco este montado en la ruta indicada:
+* verifique que el disco este montado en la ruta indicada:
+
 ```
 lsfs
 ```
@@ -142,7 +156,7 @@ lsfs
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/12.PNG">
 </p>
 
-### En este paso, debemos asegurarnos que la imagen creada tenga el mismo tamaño en espacio de almacenamiento a la maquina que se desea exportar.
+* En este paso, asegérese de que la imagen creada tenga el mismo tamaño en espacio de almacenamiento del total de los discos que se desean exportar.
 
 ```
 df -m
@@ -152,7 +166,7 @@ df -m
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/13.PNG">
 </p>
 
-### Mediante la utilización del siguiente comando exportamos la imagen del disco,en este proceso se crean dos archivos: un .ovf y un .img. 
+* Mediante la utilización del siguiente comando se exporta la imagen del disco, en este proceso se crean dos archivos: un .ovf y un .img. 
 
 ```
 ./export_lpar.ksh hdisk0
@@ -162,7 +176,7 @@ df -m
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/14.PNG">
 </p>
 
-### Teniendo los archivos .ovf y .img debemos crear uno nuevo que resulta de comprimir estos dos:
+* Comprima los archivos .ovf y .img en un .ova mediante el siguiente comando, teniendo en cuenta el nombre de los archivos mostrados en el paso anterior. 
 
 ```
 tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
@@ -172,7 +186,7 @@ tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/15.PNG">
 </p>
 
-**NOTA: Los archivos .ovf y .img son los que se han gererado anteriormente, mientras que el archivo .ova es el que deseamos.**
+Este archivo .ova es el archivo que deberá cargar mediante FTP a skytap. Se recomienda enviar este archivo por ssh a una máquina donde tenga acceso a herramientas de conexión FTP como winSCP o Filezilla.
  
  ## 3. Crear un trabajo de importación en Skytap
  
@@ -190,10 +204,10 @@ tar -cvf - archivo.ovf archivo.img | gzip> archivo.ova
 <img width="929" alt="Skytap5" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen3.png">
 </p>
 
- ## 4. Cargar los archivos vía FTP
+ ## 4. Cargar los archivos vía SFTP
  
- Para este paso necesitará un cliente FTP, le recomendamos el uso de [WinSCP](https://winscp.net/eng/index.php) para Microsoft.
- * En la interfaz de Skytap encontrará las credenciales para la conexión FTP.
+ Para este paso necesitará un cliente SFTP, le recomendamos el uso de [WinSCP](https://winscp.net/eng/index.php) para Microsoft y Filezilla para Ubuntu. 
+ * En la interfaz de Skytap encontrará las credenciales para la conexión SFTP.
 
 <p align="center">
 <img width="929" alt="skytap1" src="https://github.com/emeloibmco/Skytap-Importar-una-imagen/blob/master/Imagen4.png">
