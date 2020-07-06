@@ -28,7 +28,7 @@ Finalmente presione el botón **Launch Skytap On IBM Cloud** que lo redirigirá 
 
 ## 2. Preparar imagen de la máquina Power AIX 
 
-Para poder exportar la imagen de una máquina AIX sifa los siguientes pasos:
+Para poder exportar la imagen de una máquina AIX siga los siguientes pasos:
 
 * En la máquina a exportar ingrese a la ruta **/etc/security/limits**  y asegúrese de que la configuración sea la siguiente:
 ```
@@ -39,7 +39,7 @@ default:
          fsize = -1
 ```     
 
-* Descargue y extraiga los archivos del repositorio con los scripts necesarios para la exportacion:
+* Descargue y extraiga los archivos del repositorio con los scripts necesarios para la exportación:
 
 ```
 https://github.com/skytap/aix-export
@@ -136,7 +136,7 @@ smit fs
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/9.png">
 </p>
 
-* Ahora monte el file System que creado en el paso anterior en la ruta del disco de destino, tenga en cuenta que skytapfs es el nombre del file system que se especificó anteriormente.
+* Ahora monte el file System que creó en el paso anterior en la ruta del disco de destino, recuerde que skytapfs es el nombre del file system que se especificó anteriormente.
 
 ```
 mount /skytapfs
@@ -146,7 +146,7 @@ mount /skytapfs
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/10%20.png">
 </p>
 
-* verifique que el disco este montado en la ruta indicada:
+* verifique que el disco esté montado en la ruta indicada:
 
 ```
 lsfs
@@ -166,7 +166,7 @@ df -m
 <img width="956" alt="Skytapy" src="https://github.com/emeloibmco/Skytap-Importar-imagen-Power/blob/master/13.PNG">
 </p>
 
-* Mediante la utilización del siguiente comando se exporta la imagen del disco, en este proceso se crean dos archivos: un .ovf y un .img. 
+* Mediante la utilización del siguiente comando se exporta la imagen del disco, en este proceso se crean dos archivos: un .ovf y un .img. (El proceso puede tardar)
 
 ```
 ./export_lpar.ksh hdisk0
